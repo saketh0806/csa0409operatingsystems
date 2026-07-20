@@ -1,0 +1,172 @@
+1) START
+Create child process using fork()
+
+IF child process THEN
+    Display Child PID
+ELSE
+    Display Parent PID
+END IF
+
+STOP
+C CODE
+#include <stdio.h>
+#include <unistd.h>
+
+int main()
+{
+    pid_t pid;
+
+    pid = fork();
+
+    if(pid == 0)
+    {
+        printf("Child Process\n");
+        printf("Child PID = %d\n", getpid());
+        printf("Parent PID = %d\n", getppid());
+    }
+    else
+    {
+        printf("Parent Process\n");
+        printf("Parent PID = %d\n", getpid());
+    }
+
+    return 0;
+}
+
+2) START
+
+Create/Open file
+Write student name into file
+Close file
+
+STOP
+
+C CODE
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main()
+{
+    int fd;
+
+    fd = open("student.txt", O_CREAT | O_WRONLY, 0644);
+
+    write(fd, "Sai Saketh\n", 11);
+
+    close(fd);
+
+    printf("Data Written Successfully");
+
+    return 0;
+}
+3) START
+
+Open source file
+Open destination file
+
+Read data from source
+Write data to destination
+
+Close source file
+Close destination file
+
+STOP
+
+C CODE
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main()
+{
+    int source, destination;
+    char buffer[100];
+    int bytes;
+
+    source = open("source.txt", O_RDONLY);
+    destination = open("copy.txt", O_CREAT | O_WRONLY, 0644);
+
+    while((bytes = read(source, buffer, sizeof(buffer))) > 0)
+    {
+        write(destination, buffer, bytes);
+    }
+
+    close(source);
+    close(destination);
+
+    printf("File Copied Successfully");
+
+    return 0;
+}
+4) START
+
+Create child using fork()
+
+IF child process THEN
+      Execute another program using exec()
+ELSE
+      Wait for child process
+      Print Parent Resumed
+END IF
+
+STOP
+
+C CODE
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/wait.h>
+
+int main()
+{
+    pid_t pid;
+
+    pid = fork();
+
+    if(pid == 0)
+    {
+        execl("/bin/ls", "ls", NULL);
+    }
+    else
+    {
+        wait(NULL);
+        printf("Parent Process Resumed\n");
+    }
+
+    return 0;
+}
+5) START
+
+Open file
+
+Read contents
+
+Display contents
+
+Close file
+
+STOP
+
+C CODE 
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main()
+{
+    int fd;
+    char buffer[100];
+    int bytes;
+
+    fd = open("student.txt", O_RDONLY);
+
+    bytes = read(fd, buffer, sizeof(buffer)-1);
+
+    buffer[bytes] = '\0';
+
+    printf("%s", buffer);
+
+    close(fd);
+
+    return 0;
+}
