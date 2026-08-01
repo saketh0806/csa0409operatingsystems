@@ -1,0 +1,55 @@
+Q1. Deadlock Debugging
+Deadlock occurs when processes wait indefinitely for resources.
+P1 locks R1 and requests R2.
+P2 locks R2 and requests R1.
+Both processes wait for each other.
+Circular wait causes deadlock.
+No process can proceed.
+System execution stops.
+Eliminate deadlock using resource ordering.
+Lock resources in the same sequence.
+Prevent circular waiting.
+Q2. CPU Utilization Problem
+CPU utilization is only 30%.
+Processes frequently switch between Ready and Waiting.
+Frequent I/O operations delay execution.
+CPU remains idle during I/O.
+Poor scheduling reduces efficiency.
+Low CPU usage affects performance.
+Increase multiprogramming.
+Use asynchronous I/O.
+Improve scheduling algorithm.
+Increase CPU utilization.
+Q3. Memory Bottleneck Debugging
+Program has large heap memory.
+Twenty-five threads increase memory usage.
+Frequent page faults occur.
+Memory swapping slows execution.
+High memory access overhead.
+Performance degrades significantly.
+Reduce thread count.
+Optimize heap allocation.
+Use thread pooling.
+Improve memory management.
+Q4. Starvation Debugging
+P5 is in the lowest-priority queue.
+Higher-priority queues execute first.
+P5 waits indefinitely.
+CPU never reaches Q3.
+Starvation occurs.
+Process execution is delayed.
+Apply Aging technique.
+Gradually increase process priority.
+Ensure fair CPU allocation.
+Prevent starvation.
+Q5. Context-Switch Overhead Debugging
+Server performs 20,000 context switches/sec.
+Time quantum is only 1 ms.
+Burst time is 2 ms.
+Frequent preemption occurs.
+High I/O wait increases switching.
+CPU spends time saving/restoring context.
+Increase time quantum.
+Reduce unnecessary preemption.
+Optimize I/O operations.
+Lower context-switch overhead.
