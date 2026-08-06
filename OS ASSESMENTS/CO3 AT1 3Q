@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int main() {
+    int pt[5], page, offset, i;
+
+    printf("Enter 5 frame numbers:\n");
+    for(i = 0; i < 5; i++)
+        scanf("%d", &pt[i]);
+
+    printf("Enter Page Number: ");
+    scanf("%d", &page);
+
+    printf("Enter Offset: ");
+    scanf("%d", &offset);
+
+    if(page < 5)
+        printf("Frame = %d\nPhysical Address = %d", pt[page], pt[page] * 100 + offset);
+    else
+        printf("Invalid Page Number");
+
+    return 0;
+}
+
+
+OUTPUT
+
+nter 5 frame numbers:
+2 5 1 4 3
+Enter Page Number: 3
+Enter Offset: 20
+Frame = 4
+Physical Address = 420
+
+=== Code Execution Successful ===
