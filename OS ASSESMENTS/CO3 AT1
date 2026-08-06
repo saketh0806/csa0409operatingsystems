@@ -1,0 +1,174 @@
+#include <stdio.h>
+
+int main() {
+    int base, limit, logical;
+
+    printf("Base: ");
+    scanf("%d", &base);
+
+    printf("Limit: ");
+    scanf("%d", &limit);
+
+    printf("Logical Address: ");
+    scanf("%d", &logical);
+
+    if (logical < limit)
+        printf("Physical Address = %d", base + logical);
+    else
+        printf("Invalid Address");
+
+    return 0;
+}
+
+OUTPUT
+Base: 1000
+Limit: 500
+Logical Address: 200
+Physical Address = 1200
+
+=== Code Execution Successful ===
+
+
+
+#include <stdio.h>
+
+int main() {
+    int pageTable[5] = {2, 5, 1, 4, 3};
+    int page, offset, frame;
+
+    printf("Page Number: ");
+    scanf("%d", &page);
+
+    printf("Offset: ");
+    scanf("%d", &offset);
+
+    if (page < 5) {
+        frame = pageTable[page];
+        printf("Physical Address = %d\n", frame * 100 + offset);
+    } else {
+        printf("Invalid Page Number");
+    }
+
+    return 0;
+}
+
+
+OUTPUT
+Page Number: 2
+Offset: 50
+Physical Address = 150
+
+
+=== Code Execution Successful ===
+
+
+
+#include <stdio.h>
+
+int main() {
+    int pt[5], page, offset, i;
+
+    printf("Enter 5 frame numbers:\n");
+    for(i = 0; i < 5; i++)
+        scanf("%d", &pt[i]);
+
+    printf("Enter Page Number: ");
+    scanf("%d", &page);
+
+    printf("Enter Offset: ");
+    scanf("%d", &offset);
+
+    if(page < 5)
+        printf("Frame = %d\nPhysical Address = %d", pt[page], pt[page] * 100 + offset);
+    else
+        printf("Invalid Page Number");
+
+    return 0;
+}
+
+
+OUTPUT
+
+nter 5 frame numbers:
+2 5 1 4 3
+Enter Page Number: 3
+Enter Offset: 20
+Frame = 4
+Physical Address = 420
+
+=== Code Execution Successful ===
+
+
+
+
+#include <stdio.h>
+
+int main() {
+    float mem, tlb, hit, noTLB, withTLB;
+
+    printf("Memory Access Time: ");
+    scanf("%f", &mem);
+
+    printf("TLB Access Time: ");
+    scanf("%f", &tlb);
+
+    printf("TLB Hit Ratio (0-1): ");
+    scanf("%f", &hit);
+
+    noTLB = 2 * mem;
+    withTLB = hit * (tlb + mem) + (1 - hit) * (tlb + 2 * mem);
+
+    printf("Without TLB = %.2f ns\n", noTLB);
+    printf("With TLB = %.2f ns\n", withTLB);
+
+    return 0;
+}
+
+
+OUTPUT
+
+Memory Access Time: 100
+TLB Access Time: 20
+TLB Hit Ratio (0-1): 0.8
+Without TLB = 200.00 ns
+With TLB = 140.00 ns
+
+
+=== Code Execution Successful ===
+
+
+
+
+
+#include <stdio.h>
+
+int main() {
+    int base, limit, addr;
+
+    printf("Base: ");
+    scanf("%d", &base);
+
+    printf("Limit: ");
+    scanf("%d", &limit);
+
+    printf("Logical Address: ");
+    scanf("%d", &addr);
+
+    if (addr >= 0 && addr < limit)
+        printf("Access Allowed\nPhysical Address = %d", base + addr);
+    else
+        printf("Access Denied");
+
+    return 0;
+}
+
+
+OUTPUT
+
+Base: 1000
+Limit: 500
+Logical Address: 250
+Access Allowed
+Physical Address = 1250
+
+=== Code Execution Successful ===
