@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int main() {
+    float mem, tlb, hit, noTLB, withTLB;
+
+    printf("Memory Access Time: ");
+    scanf("%f", &mem);
+
+    printf("TLB Access Time: ");
+    scanf("%f", &tlb);
+
+    printf("TLB Hit Ratio (0-1): ");
+    scanf("%f", &hit);
+
+    noTLB = 2 * mem;
+    withTLB = hit * (tlb + mem) + (1 - hit) * (tlb + 2 * mem);
+
+    printf("Without TLB = %.2f ns\n", noTLB);
+    printf("With TLB = %.2f ns\n", withTLB);
+
+    return 0;
+}
+
+
+OUTPUT
+
+Memory Access Time: 100
+TLB Access Time: 20
+TLB Hit Ratio (0-1): 0.8
+Without TLB = 200.00 ns
+With TLB = 140.00 ns
+
+
+=== Code Execution Successful ===
