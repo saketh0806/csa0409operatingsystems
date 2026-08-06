@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int main() {
+    int base, limit, addr;
+
+    printf("Base: ");
+    scanf("%d", &base);
+
+    printf("Limit: ");
+    scanf("%d", &limit);
+
+    printf("Logical Address: ");
+    scanf("%d", &addr);
+
+    if (addr >= 0 && addr < limit)
+        printf("Access Allowed\nPhysical Address = %d", base + addr);
+    else
+        printf("Access Denied");
+
+    return 0;
+}
+
+
+OUTPUT
+
+Base: 1000
+Limit: 500
+Logical Address: 250
+Access Allowed
+Physical Address = 1250
+
+=== Code Execution Successful ===
