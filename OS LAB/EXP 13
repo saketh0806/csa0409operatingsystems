@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<pthread.h>
+#include<semaphore.h>
+
+int b[5],in=0,out=0;
+sem_t e,f;
+
+void *p(void *x)
+{
+int i;
+for(i=1;i<=5;i++)
+{
+sem_wait(&e);
+b[in]=i;
+printf("Produced %d\n",i);
+in=(in+1)%5;
+sem_post(&f);
+}
+}
+
+void *c(void *x)
+{
+int i;
+for(i=1;i<=5;i++)
+{
+sem_wait(&f);
+printf("Consumed %d\n",b[out]);
+out=(out+1)%5;
+sem_post(&e);
+}
+}
+
+int main()
+{
+pthread_t x,y;
+sem_init(&e,0,5);
+sem_init(&f,0,0);
+pthread_create(&x,0,p,0);
+pthread_create(&y,0,c,0);
+pthread_join(x,0);
+pthread_join(y,0);
+}
