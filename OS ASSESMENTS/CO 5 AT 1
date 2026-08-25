@@ -1,0 +1,91 @@
+1st question :--
+To design an optimized Linux file system layout design  , and how the 50 GB hard disk should be divided and managed in Linux so that the server does not run out of space.
+we can use Linux partitions such as:
+50 GB
+
+ /          → Operating system
+ /var       → Logs + application-related data
+ /home      → User files
+ /opt       → Applications
+ /tmp       → Temporary files
+ /swap       → Virtual memory
+ / Reserve    → Emergency space
+
+2. How will you control the log files?
+
+Since logs are continuously increasing, so we need to use log rotation.
+
+example:
+                    Log file
+                        ↓
+                  Reaches limit
+                        ↓
+                Old log → compressed
+                        ↓
+              New log file created
+                        ↓
+           Old logs deleted after some time
+
+Conclusion: Proper partitioning and log rotation keep disk space under control, prevent logs from exceeding 10 GB, and ensure critical services run without interruption.
+
+
+2nd question :---
+      improving Linux CPU performance using kernel-level techniques.
+
+          * Scheduler tuning – control how the CPU gives time to different processes.
+          * Process priority – use nice / renice to give important processes higher priority.
+          * Real-time scheduling – use chrt for time-critical processes.
+          * CPU affinity – use taskset to assign a process to specific CPU cores.
+          * Kernel modules – load only the required modules to avoid unnecessary overhead.
+
+3rd question :--
+    processing 1 million log entries using only Linux shell commands.
+                 * Efficient Linux commands – awk, grep, sort, uniq, cut, wc.
+                 * Avoid slow loops – don't unnecessarily process each line using while read.
+                 * Reduce unnecessary commands – use one powerful command like awk for multiple operations.
+                 * Measure execution time – use time to check whether it finishes within 2 minutes.
+                              
+                        Performance calculation:
+                                                      1,000,000÷120≈8,334
+
+                                     So the script should process about 8,334 log entries per second.
+
+so the conclusion is 
+  Processing  1 million logs very quickly using optimized Linux commands and finish within 2 minutes.
+
+
+4th question :--
+                 managing a faulty high-CPU process in Linux.
+         
+Process Management Strategy :-
+
+      * We Use top or ps  ---  to identify the process consuming 90% CPU.
+      * We Use top -p PID to continuously monitor the faulty process.
+      * We Use renice     ---  to reduce its CPU priority.
+      * we Use taskset    --- to restrict the process to specific CPU cores.
+      * First we use kill 15 PID   --- to stop the process safely.
+        If it does not stop, use kill -9 PID.
+    Check critical services using systemctl status before stopping any process.
+    Monitor the system after controlling the faulty process.
+
+so the Conclusion : Identify, monitor, reduce the priority, and safely terminate the faulty process without restarting the system or affecting critical services.
+
+5th question :---
+   Resource Allocation for 5 Virtual Machines
+     In The Question they given 
+                                 Total RAM = 16 GB
+                                 5 VMs
+                                 Each VM needs minimum 2 GB
+                                 Host OS needs 4 GB
+
+solution : 
+                   If We Allocate 4 GB RAM to the host operating system.
+                   Then ,  Allocate 2 GB × 5 = 10 GB to the five VMs.
+                   So ,   Total required RAM = 4 + 10 = 14 GB.
+                               Remaining RAM = 16 − 14 = 2 GB.
+                   Keep the remaining 2 GB as reserve for changing workloads.
+                  We can Use dynamic memory allocation to give extra RAM to VMs when required.
+                         So We Use memory ballooning to recover unused memory from less-active VMs.
+                  Avoid giving more RAM to VMs if it causes the host OS to run out of memory.
+
+ So from the above solution , the Conclusion is : Allocate 4 GB to the host, 2 GB to each VM, and keep 2 GB as reserve to ensure all VMs operate smoothly.
