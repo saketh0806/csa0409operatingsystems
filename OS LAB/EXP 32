@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+int main()
+{
+    int pages[8] = {1, 2, 3, 1, 4, 5, 2, 1};
+    int frame[3] = {-1, -1, -1};
+    int used[3] = {0, 0, 0};
+    int i, j, pos, min, found;
+
+    for(i = 0; i < 8; i++)
+    {
+        found = 0;
+
+        for(j = 0; j < 3; j++)
+        {
+            if(frame[j] == pages[i])
+            {
+                found = 1;
+                used[j] = i;
+            }
+        }
+
+        if(found == 0)
+        {
+            pos = 0;
+            min = used[0];
+
+            for(j = 1; j < 3; j++)
+            {
+                if(used[j] < min)
+                {
+                    min = used[j];
+                    pos = j;
+                }
+            }
+
+            frame[pos] = pages[i];
+            used[pos] = i;
+        }
+
+        printf("Page %d : ", pages[i]);
+
+        for(j = 0; j < 3; j++)
+            printf("%d ", frame[j]);
+
+        printf("\n");
+    }
+
+    return 0;
+}
