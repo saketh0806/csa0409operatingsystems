@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+int main()
+{
+    int request[6] = {98, 183, 37, 122, 14, 65};
+    int head = 53;
+    int total = 0;
+    int i, j, temp;
+
+    for(i = 0; i < 6; i++)
+    {
+        for(j = i + 1; j < 6; j++)
+        {
+            if(request[i] > request[j])
+            {
+                temp = request[i];
+                request[i] = request[j];
+                request[j] = temp;
+            }
+        }
+    }
+
+    printf("SCAN Order:\n");
+
+    for(i = 0; i < 6; i++)
+    {
+        if(request[i] >= head)
+        {
+            printf("%d ", request[i]);
+            total = total + request[i] - head;
+            head = request[i];
+        }
+    }
+
+    total = total + 199 - head;
+    head = 199;
+
+    for(i = 5; i >= 0; i--)
+    {
+        if(request[i] < 53)
+        {
+            printf("%d ", request[i]);
+            total = total + head - request[i];
+            head = request[i];
+        }
+    }
+
+    printf("\nTotal head movement = %d\n", total);
+
+    return 0;
+}
