@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <dirent.h>
+
+int main()
+{
+    DIR *d;
+    struct dirent *file;
+
+    d = opendir(".");
+
+    printf("Files in current directory:\n");
+
+    while((file = readdir(d)) != NULL)
+    {
+        printf("%s\n", file->d_name);
+    }
+
+    closedir(d);
+
+    return 0;
+}
