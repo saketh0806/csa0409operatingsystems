@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main()
+{
+    int start = 10;
+    int length = 5;
+    int i;
+
+    printf("File starts at block %d\n", start);
+    printf("File blocks are:\n");
+
+    for(i = 0; i < length; i++)
+        printf("%d ", start + i);
+
+    return 0;
+}
