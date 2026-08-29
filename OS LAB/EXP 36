@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main()
+{
+    int block[5] = {10, 25, 7, 18, 30};
+    int i;
+
+    printf("Linked File Blocks:\n");
+
+    for(i = 0; i < 4; i++)
+        printf("%d -> ", block[i]);
+
+    printf("%d -> NULL\n", block[4]);
+
+    printf("\nFirst Block = %d\n", block[0]);
+    printf("Last Block = %d\n", block[4]);
+
+    return 0;
+}
