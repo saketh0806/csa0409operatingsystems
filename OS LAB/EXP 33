@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+int main()
+{
+    int page[8] = {1, 2, 3, 4, 1, 2, 5, 1};
+    int frame[3] = {-1, -1, -1};
+    int i, j, k, pos, far, found;
+
+    for(i = 0; i < 8; i++)
+    {
+        found = 0;
+
+        for(j = 0; j < 3; j++)
+        {
+            if(frame[j] == page[i])
+                found = 1;
+        }
+
+        if(found == 0)
+        {
+            pos = -1;
+            far = -1;
+
+            for(j = 0; j < 3; j++)
+            {
+                if(frame[j] == -1)
+                {
+                    pos = j;
+                    break;
+                }
+
+                for(k = i + 1; k < 8; k++)
+                {
+                    if(frame[j] == page[k])
+                        break;
+                }
+
+                if(k > far)
+                {
+                    far = k;
+                    pos = j;
+                }
+            }
+
+            frame[pos] = page[i];
+        }
+
+        printf("Page %d : ", page[i]);
+
+        for(j = 0; j < 3; j++)
+            printf("%d ", frame[j]);
+
+        printf("\n");
+    }
+
+    return 0;
+}
