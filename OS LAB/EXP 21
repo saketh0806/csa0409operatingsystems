@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main()
+{
+    char file[5][20] = {
+        "file1.txt",
+        "file2.txt",
+        "file3.txt",
+        "file4.txt",
+        "file5.txt"
+    };
+
+    int i;
+
+    printf("Files in Directory:\n");
+
+    for(i = 0; i < 5; i++)
+    {
+        printf("%s\n", file[i]);
+    }
+
+    return 0;
+}
