@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main()
+{
+    int index[5] = {10, 25, 7, 18, 30};
+    int i;
+
+    printf("Index Block\n");
+
+    for(i = 0; i < 5; i++)
+        printf("File Block %d -> Disk Block %d\n",
+               i + 1, index[i]);
+
+    return 0;
+}
