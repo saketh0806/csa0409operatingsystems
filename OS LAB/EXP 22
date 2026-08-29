@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main()
+{
+    char user1[3][20] = {"a.txt", "b.txt", "c.txt"};
+    char user2[2][20] = {"x.txt", "y.txt"};
+
+    int i;
+
+    printf("User 1 Directory:\n");
+
+    for(i = 0; i < 3; i++)
+        printf("%s\n", user1[i]);
+
+    printf("\nUser 2 Directory:\n");
+
+    for(i = 0; i < 2; i++)
+        printf("%s\n", user2[i]);
+
+    return 0;
+}
