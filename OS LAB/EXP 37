@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main()
+{
+    int request[6] = {98, 183, 37, 122, 14, 65};
+    int head = 53;
+    int total = 0;
+    int i;
+
+    printf("Disk movement:\n");
+
+    for(i = 0; i < 6; i++)
+    {
+        printf("%d -> %d\n", head, request[i]);
+
+        if(head > request[i])
+            total = total + head - request[i];
+        else
+            total = total + request[i] - head;
+
+        head = request[i];
+    }
+
+    printf("\nTotal head movement = %d\n", total);
+
+    return 0;
+}
