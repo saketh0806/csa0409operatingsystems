@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+struct employee
+{
+    int id;
+    char name[20];
+    int salary;
+};
+
+int main()
+{
+    struct employee e[3] = {
+        {101, "Ravi", 25000},
+        {102, "Kumar", 30000},
+        {103, "Arun", 35000}
+    };
+
+    int position = 2;
+
+    printf("Employee Details:\n");
+    printf("ID     : %d\n", e[position-1].id);
+    printf("Name   : %s\n", e[position-1].name);
+    printf("Salary : %d\n", e[position-1].salary);
+
+    return 0;
+}
